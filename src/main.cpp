@@ -124,6 +124,7 @@ int main(void)
         /* Game loop */
 
         /* Render here */
+        glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw triangle to test OpenGL works
