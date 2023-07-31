@@ -127,18 +127,10 @@ int main(void)
         glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Draw triangle to test OpenGL works
+        // Draw a triangle
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
-
-        /*
-        glBegin(GL_TRIANGLES);
-        glVertex2f(-0.5f, -0.5f);
-        glVertex2f(0.0f, 0.5f);
-        glVertex2f(0.5f, -0.5f);
-        glEnd();
-        */
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
