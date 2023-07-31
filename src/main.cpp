@@ -37,10 +37,21 @@ int main(void)
 
     while (!glfwWindowShouldClose(window)) {
         /* Game loop */
+
+        /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
+        // Draw triangle to test OpenGL works
+        glBegin(GL_TRIANGLES);
+        glVertex2f(-0.5f, -0.5f);
+        glVertex2f(0.0f, 0.5f);
+        glVertex2f(0.5f, -0.5f);
+        glEnd();
+
+        /* Swap front and back buffers */
         glfwSwapBuffers(window);
 
+        /* Poll for and process events */
         glfwPollEvents();
     }
 
