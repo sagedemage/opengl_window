@@ -4,3 +4,4 @@ build/
 *.kdev4
 files/
 *.xcf
+*.png

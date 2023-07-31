@@ -1,6 +1,8 @@
 # OpenGL Demo
 OpenGL demo written in C++ using OpenGL.
 
+<img width="495" height="401" src="./images/render_triangle_window.webp" />
+
 ## Install GLFW dependencies
 ```
 sudo apt install libglfw3 libglfw3-dev 
