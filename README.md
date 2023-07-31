@@ -28,3 +28,5 @@ glEnd();
 glfwSwapBuffers(window);
 ```
 
+## Useful Resources
+- [learnopengl](https://learnopengl.com/Getting-started/Hello-Triangle)
