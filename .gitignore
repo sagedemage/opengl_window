@@ -5,3 +5,11 @@ build/
 files/
 *.xcf
 *.png
+
+# Music files
+*.aup3
+*.mscz
+
+# Cache files
+.mscbackup
+~*.*
