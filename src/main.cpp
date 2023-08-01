@@ -1,8 +1,14 @@
+/* Standard Libaries */
+#include <iostream>
+#include <string>
+
+/* OpenGL Libraries */
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-#include <string>
+/* SDL_mixer Library */
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 //#include "main_window/main_window.h"
 
@@ -23,6 +29,11 @@ const char *fragmentShaderSource = "#version 330 core\n"
     "{\n"
     "   FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
     "}\n\0";
+
+/* SDL_mixer */
+const int music_volume = 12;
+const int chunksize = 1024;
+const char *music_path = "music/square.ogg";
 
 int main(void)
 {
@@ -120,6 +131,30 @@ int main(void)
 
     glBindVertexArray(0);
 
+    /*
+     * Audio
+     */
+
+    /* Open Audio using SDL_mixer */
+
+    int open_audio_status = Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, chunksize);
+
+    if (open_audio_status == -1) {
+        printf("Mix_OpenAudio: %s\n", Mix_GetError());
+    }
+
+    Mix_Music *music = Mix_LoadMUS(music_path);
+
+    /* Play Music Theme */
+    int music_status = Mix_PlayMusic(music, -1);
+
+    if (music_status == -1) {
+        std::cout << "Mix_PlayMusic: " << Mix_GetError() << "" << std::endl;
+    }
+
+    Mix_VolumeMusic(music_volume);
+
+
     while (!glfwWindowShouldClose(window)) {
         /* Game loop */
 
@@ -143,6 +178,10 @@ int main(void)
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteProgram(shaderProgram);
+
+    // Dealocate Music and Audio
+    Mix_FreeMusic(music);
+    Mix_CloseAudio();
 
     // Terminates the GLFW library
     glfwTerminate();
