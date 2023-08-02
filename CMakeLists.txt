@@ -10,6 +10,7 @@ set(WARNING_FLAGS "-Werror -Wpedantic -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${STANDARD_CXX_VERSION_FLAG} ${OPTIMIZE_FLAG} ${WARNING_FLAGS}")
 
 file(COPY music DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY shader DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(open_gl_demo 
     src/main.cpp

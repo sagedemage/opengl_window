@@ -1,6 +1,8 @@
 /* Standard Libaries */
-#include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 /* OpenGL Libraries */
 #include <GL/glew.h>
@@ -15,32 +17,36 @@
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
 
-// Shader Source Code (GLSL code)
-const char *vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "layout (location = 1) in vec3 aColor;\n"
-    "out vec3 ourColor;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "   ourColor = aColor;\n"
-    "}\0";
-
-const char *fragmentShaderSource = "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "in vec3 ourColor;\n"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(ourColor, 1.0f);\n"
-    "}\n\0";
-
 /* SDL_mixer */
 const int music_volume = 12;
 const int chunksize = 1024;
 const char *music_path = "music/square.ogg";
 
+std::string get_shader_code(std::string shader_file) {
+    // retrieve the shader source code from file fragment path
+    std::ifstream read_file(shader_file);
+
+    std::string shader_code;
+    std::string line;
+
+    while (getline (read_file, line)) {
+        // add line to the string
+        shader_code += line + "\n";
+    }
+
+    read_file.close();
+
+    return shader_code;
+}
+
 int main(void)
 {
+    // Shader Source Code (GLSL code)
+    std::string vertex_shader_string = get_shader_code("shader/shader.vert");
+    std::string fragment_shader_string = get_shader_code("shader/shader.frag");
+    const char *vertex_shader_source = vertex_shader_string.c_str();
+    const char *fragment_shader_source = fragment_shader_string.c_str();
+
     GLFWwindow* window;
 
     // Initialize GLFW
@@ -72,7 +78,7 @@ int main(void)
     // vertex shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    glShaderSource(vertexShader, 1, &vertex_shader_source, NULL);
     glCompileShader(vertexShader);
 
     int success;
@@ -81,18 +87,18 @@ int main(void)
 
     if (!success) {
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cout << "Error: Vertex Shader Compilation Failed" << infoLog << std::endl;
+        std::cout << "Error: Vertex Shader Compilation Failed: " << infoLog << std::endl;
     }
 
     // frament shader
     unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+    glShaderSource(fragmentShader, 1, &fragment_shader_source, NULL);
     glCompileShader(fragmentShader);
 
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cout << "Error: Fragment Shader Compilation Failed" << infoLog << std::endl;
+        std::cout << "Error: Fragment Shader Compilation Failed: " << infoLog << std::endl;
     }
 
     // link shaders
@@ -104,7 +110,7 @@ int main(void)
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cout << "Error: Program Shader Compilation Failed" << infoLog << std::endl;
+        std::cout << "Error: Program Shader Compilation Failed: " << infoLog << std::endl;
     }
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
