@@ -13,3 +13,4 @@ files/
 # Cache files
 .mscbackup
 ~*.*
+*.kate-swp
