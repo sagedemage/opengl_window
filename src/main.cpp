@@ -1,18 +1,5 @@
-/* Standard Libaries */
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-
-/* OpenGL Libraries */
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
-/* SDL_mixer Library */
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_mixer.h>
-
 //#include "main_window/main_window.h"
+#include "pch/opengl_demo-pch.h"
 
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;

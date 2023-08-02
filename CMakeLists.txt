@@ -17,3 +17,5 @@ add_executable(open_gl_demo
 )
 
 target_link_libraries(open_gl_demo -lglfw -lGLEW -lGLU -lGL -lSDL2 -lSDL2_mixer)
+
+target_precompile_headers(open_gl_demo PRIVATE src/pch/opengl_demo-pch.h)
