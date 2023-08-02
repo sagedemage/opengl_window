@@ -34,7 +34,7 @@ int main(void)
     const char *fragment_shader_source = fragment_shader_string.c_str();
 
     /* SDL_mixer */
-    const int music_volume = 12;
+    const int music_volume = 64;
     const int channels = 2;
     const int chunksize = 1024;
     const char *music_path = "music/square.ogg";
