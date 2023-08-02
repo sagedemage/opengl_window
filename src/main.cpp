@@ -17,11 +17,6 @@
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
 
-/* SDL_mixer */
-const int music_volume = 12;
-const int chunksize = 1024;
-const char *music_path = "music/square.ogg";
-
 std::string get_shader_code(std::string shader_file) {
     // retrieve the shader source code from file fragment path
     std::ifstream read_file(shader_file);
@@ -41,9 +36,18 @@ std::string get_shader_code(std::string shader_file) {
 
 int main(void)
 {
-    // Shader Source Code (GLSL code)
-    std::string vertex_shader_string = get_shader_code("shader/shader.vert");
-    std::string fragment_shader_string = get_shader_code("shader/shader.frag");
+    /* SDL_mixer */
+    const int music_volume = 12;
+    const int chunksize = 1024;
+    const char *music_path = "music/square.ogg";
+
+    /* Shader File Path */
+    const char *vertex_shader_path = "shader/shader.vert";
+    const char *fragment_shader_path = "shader/shader.frag";
+
+    /* Shader Source Code (GLSL code) */
+    std::string vertex_shader_string = get_shader_code(vertex_shader_path);
+    std::string fragment_shader_string = get_shader_code(fragment_shader_path);
     const char *vertex_shader_source = vertex_shader_string.c_str();
     const char *fragment_shader_source = fragment_shader_string.c_str();
 
