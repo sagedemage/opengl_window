@@ -6,7 +6,7 @@ Audio::Audio(const int channels, const int chunksize)
     int open_audio_status = Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, channels, chunksize);
 
     if (open_audio_status == -1) {
-        printf("Mix_OpenAudio: %s\n", Mix_GetError());
+        std::cout << "Mix_OpenAudio: " << Mix_GetError() << std::endl;
     }
 }
 
@@ -22,7 +22,7 @@ void Audio::playMusic()
     int music_status = Mix_PlayMusic(music, -1);
 
     if (music_status == -1) {
-        std::cout << "Mix_PlayMusic: " << Mix_GetError() << "" << std::endl;
+        std::cout << "Mix_PlayMusic: " << Mix_GetError() << std::endl;
     }
 }
 

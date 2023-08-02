@@ -58,10 +58,10 @@ int main(void)
     GLenum err = glewInit();
 
     if (err != GLEW_OK) {
-        std::cout << "Error: " << glewGetErrorString(err) << "" << std::endl;
+        std::cout << "Error: " << glewGetErrorString(err) << std::endl;
     }
     else {
-        std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << "" << std::endl;
+        std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
     }
 
     /* Build and compile the Shader */
