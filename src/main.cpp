@@ -1,4 +1,3 @@
-//#include "main_window/main_window.h"
 #include "pch/opengl_demo-pch.h"
 
 const unsigned int SCREEN_WIDTH = 640;
