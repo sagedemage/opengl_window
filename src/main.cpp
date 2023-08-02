@@ -23,12 +23,6 @@ std::string get_shader_code(std::string shader_file) {
 
 int main(void)
 {
-    /* SDL_mixer */
-    const int music_volume = 12;
-    const int channels = 2;
-    const int chunksize = 1024;
-    const char *music_path = "music/square.ogg";
-
     /* Shader File Path */
     const char *vertex_shader_path = "shader/shader.vert";
     const char *fragment_shader_path = "shader/shader.frag";
@@ -39,15 +33,19 @@ int main(void)
     const char *vertex_shader_source = vertex_shader_string.c_str();
     const char *fragment_shader_source = fragment_shader_string.c_str();
 
-    GLFWwindow* window;
+    /* SDL_mixer */
+    const int music_volume = 12;
+    const int channels = 2;
+    const int chunksize = 1024;
+    const char *music_path = "music/square.ogg";
 
     // Initialize GLFW
     if (!glfwInit()) {
         return -1;
     }
 
-    // Create Window (GLFW)
-    window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OepnGL Demo", NULL, NULL);
+    // Create GLFW Window
+    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OepnGL Demo", NULL, NULL);
 
     if (!window) {
         glfwTerminate();
