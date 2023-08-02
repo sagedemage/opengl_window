@@ -13,6 +13,11 @@ sudo apt install libglfw3 libglfw3-dev
 sudo apt install libglew-dev
 ```
 
+## Install SDL_mixer dependencies
+```
+sudo apt install libsdl2-dev libsdl2-mixer-dev
+```
+
 ## Test OpenGL Works
 Write simple OpenGL code to draw a triangle to test that OpenGL works.
 ```
