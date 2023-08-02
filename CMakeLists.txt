@@ -14,6 +14,7 @@ file(COPY shader DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(open_gl_demo 
     src/main.cpp
+    src/audio/audio.cpp
 )
 
 target_link_libraries(open_gl_demo -lglfw -lGLEW -lGLU -lGL -lSDL2 -lSDL2_mixer)
