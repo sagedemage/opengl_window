@@ -18,7 +18,7 @@ const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
 
 std::string get_shader_code(std::string shader_file) {
-    // retrieve the shader source code from file fragment path
+    // get a string of the shader source code from a file
     std::ifstream read_file(shader_file);
 
     std::string shader_code;
