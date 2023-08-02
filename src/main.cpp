@@ -1,4 +1,5 @@
 #include "pch/opengl_demo-pch.h"
+#include "audio/audio.h"
 
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
@@ -22,11 +23,6 @@ std::string get_shader_code(std::string shader_file) {
 
 int main(void)
 {
-    /* SDL_mixer */
-    const int music_volume = 12;
-    const int chunksize = 1024;
-    const char *music_path = "music/square.ogg";
-
     /* Shader File Path */
     const char *vertex_shader_path = "shader/shader.vert";
     const char *fragment_shader_path = "shader/shader.frag";
@@ -37,15 +33,19 @@ int main(void)
     const char *vertex_shader_source = vertex_shader_string.c_str();
     const char *fragment_shader_source = fragment_shader_string.c_str();
 
-    GLFWwindow* window;
+    /* SDL_mixer */
+    const int music_volume = 12;
+    const int channels = 2;
+    const int chunksize = 1024;
+    const char *music_path = "music/square.ogg";
 
     // Initialize GLFW
     if (!glfwInit()) {
         return -1;
     }
 
-    // Create Window (GLFW)
-    window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OepnGL Demo", NULL, NULL);
+    // Create GLFW Window
+    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OepnGL Demo", NULL, NULL);
 
     if (!window) {
         glfwTerminate();
@@ -58,10 +58,10 @@ int main(void)
     GLenum err = glewInit();
 
     if (err != GLEW_OK) {
-        std::cout << "Error: " << glewGetErrorString(err) << "" << std::endl;
+        std::cout << "Error: " << glewGetErrorString(err) << std::endl;
     }
     else {
-        std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << "" << std::endl;
+        std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
     }
 
     /* Build and compile the Shader */
@@ -139,25 +139,14 @@ int main(void)
      * Audio
      */
 
-    /* Open Audio using SDL_mixer */
+    // Open audio using SDL_mixer
+    Audio audio(channels, chunksize);
 
-    int open_audio_status = Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, chunksize);
+    // Load and play music
+    audio.loadMusic(music_path);
+    audio.playMusic();
 
-    if (open_audio_status == -1) {
-        printf("Mix_OpenAudio: %s\n", Mix_GetError());
-    }
-
-    Mix_Music *music = Mix_LoadMUS(music_path);
-
-    /* Play Music Theme */
-    int music_status = Mix_PlayMusic(music, -1);
-
-    if (music_status == -1) {
-        std::cout << "Mix_PlayMusic: " << Mix_GetError() << "" << std::endl;
-    }
-
-    Mix_VolumeMusic(music_volume);
-
+    audio.changeVolume(music_volume);
 
     while (!glfwWindowShouldClose(window)) {
         /* Game loop */
@@ -184,8 +173,7 @@ int main(void)
     glDeleteProgram(shaderProgram);
 
     // Dealocate Music and Audio
-    Mix_FreeMusic(music);
-    Mix_CloseAudio();
+    audio.freeResources();
 
     // Terminates the GLFW library
     glfwTerminate();
