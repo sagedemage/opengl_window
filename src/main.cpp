@@ -1,4 +1,5 @@
 #include "pch/opengl_demo-pch.h"
+#include "audio/audio.h"
 
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
@@ -24,6 +25,7 @@ int main(void)
 {
     /* SDL_mixer */
     const int music_volume = 12;
+    const int channels = 2;
     const int chunksize = 1024;
     const char *music_path = "music/square.ogg";
 
@@ -139,25 +141,14 @@ int main(void)
      * Audio
      */
 
-    /* Open Audio using SDL_mixer */
+    // Open audio using SDL_mixer
+    Audio audio(channels, chunksize);
 
-    int open_audio_status = Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, chunksize);
+    // Load and play music
+    audio.loadMusic(music_path);
+    audio.playMusic();
 
-    if (open_audio_status == -1) {
-        printf("Mix_OpenAudio: %s\n", Mix_GetError());
-    }
-
-    Mix_Music *music = Mix_LoadMUS(music_path);
-
-    /* Play Music Theme */
-    int music_status = Mix_PlayMusic(music, -1);
-
-    if (music_status == -1) {
-        std::cout << "Mix_PlayMusic: " << Mix_GetError() << "" << std::endl;
-    }
-
-    Mix_VolumeMusic(music_volume);
-
+    audio.changeVolume(music_volume);
 
     while (!glfwWindowShouldClose(window)) {
         /* Game loop */
@@ -184,8 +175,7 @@ int main(void)
     glDeleteProgram(shaderProgram);
 
     // Dealocate Music and Audio
-    Mix_FreeMusic(music);
-    Mix_CloseAudio();
+    audio.freeResources();
 
     // Terminates the GLFW library
     glfwTerminate();
