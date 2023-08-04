@@ -35,5 +35,25 @@ glEnd();
 glfwSwapBuffers(window);
 ```
 
+## C++ Linter
+### Installation
+Install clang-tidy
+```
+sudo apt install clang-tidy
+```
+
+Install cppcheck
+```
+sudo apt install cppcheck
+```
+
+Generate a compile database:
+```
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -B build
+```
+
 ## Useful Resources
-- [learnopengl](https://learnopengl.com/Getting-started/Hello-Triangle)
+- [learnopengl](https://learnopengl.com/)
+- [learnopengl - Hello Triangle](https://learnopengl.com/Getting-started/Hello-Triangle)
+- [cppcheck manual](https://cppcheck.sourceforge.io/manual.pdf)
+- [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/)
