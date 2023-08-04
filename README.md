@@ -3,19 +3,29 @@ OpenGL demo written in C++ using OpenGL.
 
 <img width="495" height="401" src="./images/render_triangle_window.webp" />
 
-## Install GLFW dependencies
+## Dependencies
+
+### Install GLFW dependencies
 ```
 sudo apt install libglfw3 libglfw3-dev 
 ```
 
-## Install GLEW dependencies
+### Install GLEW dependencies
 ```
 sudo apt install libglew-dev
 ```
 
-## Install SDL_mixer dependencies
+### Install SDL_mixer dependencies
 ```
 sudo apt install libsdl2-dev libsdl2-mixer-dev
+```
+
+## Setup Build Directory
+* Setup a build directory to compile and run the program
+* Setup a compile database to lint the project
+
+```
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -B build
 ```
 
 ## Test OpenGL Works
@@ -35,5 +45,20 @@ glEnd();
 glfwSwapBuffers(window);
 ```
 
+## C++ Linter
+### Installation
+Install clang-tidy
+```
+sudo apt install clang-tidy
+```
+
+Install cppcheck
+```
+sudo apt install cppcheck
+```
+
 ## Useful Resources
-- [learnopengl](https://learnopengl.com/Getting-started/Hello-Triangle)
+- [learnopengl](https://learnopengl.com/)
+  - [learnopengl - Hello Triangle](https://learnopengl.com/Getting-started/Hello-Triangle)
+- [cppcheck manual](https://cppcheck.sourceforge.io/manual.pdf)
+- [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/)
