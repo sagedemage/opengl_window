@@ -21,9 +21,11 @@ sudo apt install libsdl2-dev libsdl2-mixer-dev
 ```
 
 ## Setup Build Directory
-Setup a build directory to compile and run the program
+* Setup a build directory to compile and run the program
+* Setup a compile database to lint the project
+
 ```
-cmake -B build
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -B build
 ```
 
 ## Test OpenGL Works
@@ -53,11 +55,6 @@ sudo apt install clang-tidy
 Install cppcheck
 ```
 sudo apt install cppcheck
-```
-
-Generate a compile database
-```
-cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -B build
 ```
 
 ## Useful Resources
