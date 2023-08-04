@@ -20,6 +20,12 @@ sudo apt install libglew-dev
 sudo apt install libsdl2-dev libsdl2-mixer-dev
 ```
 
+## Setup Build Directory
+Setup a build directory to compile and run the program
+```
+cmake -B build
+```
+
 ## Test OpenGL Works
 Write simple OpenGL code to draw a triangle to test that OpenGL works.
 ```
@@ -49,7 +55,7 @@ Install cppcheck
 sudo apt install cppcheck
 ```
 
-Generate a compile database:
+Generate a compile database
 ```
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -B build
 ```
