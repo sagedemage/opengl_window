@@ -45,7 +45,7 @@ int main(void)
     }
 
     // Create GLFW Window
-    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OepnGL Demo", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OpenGL Window", NULL, NULL);
 
     if (!window) {
         glfwTerminate();
@@ -152,7 +152,7 @@ int main(void)
         /* Game loop */
 
         /* Render here */
-        glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw a triangle

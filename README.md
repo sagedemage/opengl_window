@@ -1,7 +1,7 @@
-# OpenGL Demo
-OpenGL demo written in C++ using OpenGL.
+# OpenGL Window
+OpenGL window written in C++
 
-<img width="495" height="401" src="./images/render_triangle_window.webp" />
+![](./images/opengl_window.webp)
 
 ## Dependencies
 
