@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22 VERSION 0.1.0)
 
-project(open_gl_demo)
+project(opengl_window)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,11 +12,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${STANDARD_CXX_VERSION_FLAG} ${OPTIMIZE_
 file(COPY music DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY shader DESTINATION ${CMAKE_BINARY_DIR})
 
-add_executable(open_gl_demo 
+add_executable(opengl_window 
     src/main.cpp
     src/audio/audio.cpp
 )
 
-target_link_libraries(open_gl_demo -lglfw -lGLEW -lGLU -lGL -lSDL2 -lSDL2_mixer)
+target_link_libraries(opengl_window -lglfw -lGLEW -lGLU -lGL -lSDL2 -lSDL2_mixer)
 
-target_precompile_headers(open_gl_demo PRIVATE src/pch/opengl_demo-pch.h)
+target_precompile_headers(opengl_window PRIVATE src/pch/opengl_demo-pch.h)
