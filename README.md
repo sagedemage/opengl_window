@@ -1,7 +1,7 @@
 # OpenGL Window
 OpenGL window written in C++
 
-![](./images/opengl_window.webp)
+![](./screenshots/opengl_window.webp)
 
 ## Dependencies
 
