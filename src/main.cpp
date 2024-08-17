@@ -4,8 +4,8 @@
 
 #include "audio/audio.hpp"
 
-const unsigned int SCREEN_WIDTH = 640;
-const unsigned int SCREEN_HEIGHT = 480;
+constexpr unsigned int WINDOW_WIDTH = 640;
+constexpr unsigned int WINDOW_HEIGHT = 480;
 
 bool GetShaderCode(const char *shader_file_path, std::string *shader_source);
 
@@ -42,7 +42,7 @@ int main(void) {
     }
 
     // Create GLFW Window
-    GLFWwindow *window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT,
+    GLFWwindow *window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT,
                                           "OpenGL Window", NULL, NULL);
 
     if (!window) {
