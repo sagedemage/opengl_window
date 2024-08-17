@@ -5,7 +5,7 @@
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
 
-bool GetShaderCode(const char* shader_file_path, std::string* shader_source);
+bool GetShaderCode(const char *shader_file_path, std::string *shader_source);
 
 int main(void) {
     /* Shader File Path */
@@ -20,7 +20,7 @@ int main(void) {
     }
 
     std::string fragment_shader_s;
-    if(!GetShaderCode(fragment_shader_path, &fragment_shader_s)) {
+    if (!GetShaderCode(fragment_shader_path, &fragment_shader_s)) {
         std::cout << "Unable to get fragment shader source code!" << std::endl;
         return -1;
     }
@@ -73,8 +73,8 @@ int main(void) {
 
     if (!success) {
         glGetShaderInfoLog(vertex_shader, 512, NULL, info_log.data());
-        std::cout << "Error: Vertex Shader Compilation Failed: " << info_log.data()
-                  << std::endl;
+        std::cout << "Error: Vertex Shader Compilation Failed: "
+                  << info_log.data() << std::endl;
     }
 
     // frament shader
@@ -85,8 +85,8 @@ int main(void) {
     glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(fragment_shader, 512, NULL, info_log.data());
-        std::cout << "Error: Fragment Shader Compilation Failed: " << info_log.data()
-                  << std::endl;
+        std::cout << "Error: Fragment Shader Compilation Failed: "
+                  << info_log.data() << std::endl;
     }
 
     // link shaders
@@ -98,8 +98,8 @@ int main(void) {
     glGetProgramiv(shader_program, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(shader_program, 512, NULL, info_log.data());
-        std::cout << "Error: Program Shader Compilation Failed: " << info_log.data()
-                  << std::endl;
+        std::cout << "Error: Program Shader Compilation Failed: "
+                  << info_log.data() << std::endl;
     }
     glDeleteShader(vertex_shader);
     glDeleteShader(fragment_shader);
@@ -123,7 +123,8 @@ int main(void) {
     glBindVertexArray(vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(),
+                 GL_STATIC_DRAW);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
@@ -183,7 +184,7 @@ int main(void) {
     return 0;
 }
 
-bool GetShaderCode(const char* shader_file_path, std::string* shader_source) {
+bool GetShaderCode(const char *shader_file_path, std::string *shader_source) {
     /* Get shader source code from a file as a string */
     std::ifstream read_shader_file(shader_file_path);
 
@@ -208,4 +209,3 @@ bool GetShaderCode(const char* shader_file_path, std::string* shader_source) {
 
     return true;
 }
-
