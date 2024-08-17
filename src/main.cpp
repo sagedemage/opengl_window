@@ -3,21 +3,30 @@
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
 
-std::string get_shader_code(std::string shader_file) {
+bool GetShaderCode(const char* shader_file_path, std::string* shader_source) {
     /* Get shader source code from a file as a string */
-    std::ifstream read_file(shader_file);
+    std::ifstream read_shader_file(shader_file_path);
 
-    std::string shader_code;
-    std::string line;
-
-    while (getline(read_file, line)) {
-        // add line to the string
-        shader_code += line + "\n";
+    if (!read_shader_file.is_open()) {
+        std::cout << "failed to open shader file: " +
+                         static_cast<std::string>(shader_file_path)
+                  << std::endl;
+        return false;
     }
 
-    read_file.close();
+    std::string s_code;
+    std::string line;
 
-    return shader_code;
+    while (getline(read_shader_file, line)) {
+        // add line to the string
+        s_code += line + "\n";
+    }
+
+    read_shader_file.close();
+
+    *shader_source = s_code;
+
+    return true;
 }
 
 int main(void) {
@@ -26,10 +35,20 @@ int main(void) {
     const char *fragment_shader_path = "shader/shader.frag";
 
     /* Shader Source Code (GLSL code) */
-    std::string vertex_shader_string = get_shader_code(vertex_shader_path);
-    std::string fragment_shader_string = get_shader_code(fragment_shader_path);
-    const char *vertex_shader_source = vertex_shader_string.c_str();
-    const char *fragment_shader_source = fragment_shader_string.c_str();
+    std::string vertex_shader_s;
+    if (!GetShaderCode(vertex_shader_path, &vertex_shader_s)) {
+        std::cout << "Unable to get vertex shader source code!" << std::endl;
+        return -1;
+    }
+
+    std::string fragment_shader_s;
+    if(!GetShaderCode(fragment_shader_path, &fragment_shader_s)) {
+        std::cout << "Unable to get fragment shader source code!" << std::endl;
+        return -1;
+    }
+
+    const char *vertex_shader_source = vertex_shader_s.c_str();
+    const char *fragment_shader_source = fragment_shader_s.c_str();
 
     /* SDL_mixer */
     const int music_volume = 64;
