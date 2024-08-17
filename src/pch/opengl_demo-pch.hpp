@@ -2,10 +2,10 @@
 #define PCH_H
 
 /* Standard Libaries */
-#include <string>
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <sstream>
+#include <string>
 
 /* OpenGL Libraries */
 #include <GL/glew.h>
@@ -15,4 +15,4 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
-#endif // PCH_H
+#endif  // PCH_H
