@@ -1,4 +1,4 @@
-#include "audio.h"
+#include "audio.hpp"
 
 Audio::Audio(const int channels, const int chunksize)
 {
