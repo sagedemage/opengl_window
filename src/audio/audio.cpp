@@ -1,5 +1,7 @@
 #include "audio.hpp"
 
+#include <iostream>
+
 Audio::Audio(const int channels, const int chunksize) {
     /* Open Audio */
     int open_audio_status = Mix_OpenAudio(
