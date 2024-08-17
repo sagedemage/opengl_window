@@ -3,31 +3,7 @@
 const unsigned int SCREEN_WIDTH = 640;
 const unsigned int SCREEN_HEIGHT = 480;
 
-bool GetShaderCode(const char* shader_file_path, std::string* shader_source) {
-    /* Get shader source code from a file as a string */
-    std::ifstream read_shader_file(shader_file_path);
-
-    if (!read_shader_file.is_open()) {
-        std::cout << "failed to open shader file: " +
-                         static_cast<std::string>(shader_file_path)
-                  << std::endl;
-        return false;
-    }
-
-    std::string s_code;
-    std::string line;
-
-    while (getline(read_shader_file, line)) {
-        // add line to the string
-        s_code += line + "\n";
-    }
-
-    read_shader_file.close();
-
-    *shader_source = s_code;
-
-    return true;
-}
+bool GetShaderCode(const char* shader_file_path, std::string* shader_source);
 
 int main(void) {
     /* Shader File Path */
@@ -203,3 +179,30 @@ int main(void) {
 
     return 0;
 }
+
+bool GetShaderCode(const char* shader_file_path, std::string* shader_source) {
+    /* Get shader source code from a file as a string */
+    std::ifstream read_shader_file(shader_file_path);
+
+    if (!read_shader_file.is_open()) {
+        std::cout << "failed to open shader file: " +
+                         static_cast<std::string>(shader_file_path)
+                  << std::endl;
+        return false;
+    }
+
+    std::string s_code;
+    std::string line;
+
+    while (getline(read_shader_file, line)) {
+        // add line to the string
+        s_code += line + "\n";
+    }
+
+    read_shader_file.close();
+
+    *shader_source = s_code;
+
+    return true;
+}
+
