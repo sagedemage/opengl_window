@@ -1,10 +1,10 @@
 ---
-name: Documentation request
+name: Enhancement request
 about: Describe this issue template's purpose here.
 title: ''
-labels: documentation
+labels: enhancement
 assignees: ''
 
 ---
 
-**Describe the documentation**
+**Describe the enhancement**
