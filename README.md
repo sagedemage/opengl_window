@@ -52,11 +52,6 @@ Install clang-tidy
 sudo apt install clang-tidy
 ```
 
-Install cppcheck
-```
-sudo apt install cppcheck
-```
-
 ## Useful Resources
 - [learnopengl](https://learnopengl.com/)
   - [learnopengl - Hello Triangle](https://learnopengl.com/Getting-started/Hello-Triangle)
